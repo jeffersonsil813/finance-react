@@ -1,5 +1,8 @@
 :root {
   --purple-color: #835afd;
+  --light: #f8f8f8;
+  --light-gray: #a8a8b3;
+  --light-brown: #29292e;
 }
 
 * {

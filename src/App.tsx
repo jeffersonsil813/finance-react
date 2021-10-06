@@ -5,6 +5,7 @@ import { Item } from "./types/Item";
 import { categories } from "./data/Categories";
 import { items } from "./data/Items";
 import { getCurrentMonth, filterListByMonth } from "./helpers/dateFilter";
+import { TableArea } from "./components/TableArea/Index";
 
 import { useState, useEffect } from "react";
 
@@ -22,8 +23,9 @@ export function App() {
       <C.Header>
         <C.HeaderText>Sistema Financeiro</C.HeaderText>
       </C.Header>
-
-      <C.Body>...</C.Body>
+      <C.Body>
+        <TableArea list={filteredList} />
+      </C.Body>
     </C.Container>
   );
 }
