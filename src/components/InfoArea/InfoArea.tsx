@@ -48,11 +48,11 @@ export const InfoArea = ({
       </C.MonthArea>
 
       <C.ResumeArea>
-        <ResumeItem title="Receitas" value={income} />
-        <ResumeItem title="Despesas" value={expense} />
+        <ResumeItem title="Receitas" value={parseFloat(income.toFixed(2))} />
+        <ResumeItem title="Despesas" value={parseFloat(expense.toFixed(2))} />
         <ResumeItem
           title="Balanço"
-          value={income - expense}
+          value={parseFloat((income - expense).toFixed(2))}
           color={income - expense < 0 ? "var(--red)" : "var(--green)"}
         />
       </C.ResumeArea>

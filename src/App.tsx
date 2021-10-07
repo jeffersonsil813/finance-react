@@ -9,8 +9,10 @@ import { TableArea } from "./components/TableArea/TableArea";
 
 import { useState, useEffect } from "react";
 import { InfoArea } from "./components/InfoArea/InfoArea";
+import { InputArea } from "./components/InputArea/InputArea";
+import toast, { Toaster } from "react-hot-toast";
 
-export function App() {
+const App = () => {
   const [list, setList] = useState(items);
   const [filteredList, setFilteredList] = useState<Item[]>([]);
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
@@ -37,20 +39,42 @@ export function App() {
     setExpense(expenseCount);
   }, [filteredList]);
 
+  const handleMonthChange = (newMonth: string) => {
+    setCurrentMonth(newMonth);
+  };
+
+  const handleAddItem = (item: Item) => {
+    try {
+      let newList = [...list];
+      newList.push(item);
+      setList(newList);
+      toast.success("Item adicionado com sucesso", { duration: 3000 });
+    } catch (error) {
+      toast.error(error + "", { duration: 3000 });
+    }
+  };
+
   return (
     <C.Container>
       <C.Header>
-        <C.HeaderText>Sistema Financeiro</C.HeaderText>
+        <C.HeaderText>Finance React</C.HeaderText>
       </C.Header>
       <C.Body>
         <InfoArea
-          onMonthChange={(newMonth: string) => setCurrentMonth(newMonth)}
           currentMonth={currentMonth}
+          onMonthChange={handleMonthChange}
           income={income}
           expense={expense}
         />
+
+        <InputArea onAdd={handleAddItem} />
+
         <TableArea list={filteredList} />
       </C.Body>
+
+      <Toaster />
     </C.Container>
   );
-}
+};
+
+export default App;
