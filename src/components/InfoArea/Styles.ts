@@ -16,6 +16,7 @@ export const MonthArea = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
+  margin-right: 20px;
 `;
 
 export const MonthArrow = styled.div`

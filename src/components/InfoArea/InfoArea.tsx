@@ -2,13 +2,21 @@ import * as C from "./Styles";
 
 import { FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/all";
 import { formatCurrentMonth } from "../../helpers/dateFilter";
+import { ResumeItem } from "../ResumeItem/ResumeItem";
 
 type Props = {
   currentMonth: string;
   onMonthChange: (newMonth: string) => void;
+  income: number;
+  expense: number;
 };
 
-export const InfoArea = ({ currentMonth, onMonthChange }: Props) => {
+export const InfoArea = ({
+  currentMonth,
+  onMonthChange,
+  income,
+  expense,
+}: Props) => {
   const handlePrevMonth = () => {
     let [year, month] = currentMonth.split("-");
     let currentDate = new Date(parseInt(year), parseInt(month) - 1, 1);
@@ -38,7 +46,16 @@ export const InfoArea = ({ currentMonth, onMonthChange }: Props) => {
           <FiArrowRightCircle size="35" />
         </C.MonthArrow>
       </C.MonthArea>
-      <C.ResumeArea></C.ResumeArea>
+
+      <C.ResumeArea>
+        <ResumeItem title="Receitas" value={income} />
+        <ResumeItem title="Despesas" value={expense} />
+        <ResumeItem
+          title="Balanço"
+          value={income - expense}
+          color={income - expense < 0 ? "var(--red)" : "var(--green)"}
+        />
+      </C.ResumeArea>
     </C.Container>
   );
 };
