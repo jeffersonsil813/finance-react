@@ -1,5 +1,5 @@
 import { Item } from "../../types/Item";
-import { TableItem } from "../TableItem/Index";
+import { TableItem } from "../TableItem/TableItem";
 
 import * as C from "./Styles";
 

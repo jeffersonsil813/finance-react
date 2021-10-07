@@ -5,9 +5,10 @@ import { Item } from "./types/Item";
 import { categories } from "./data/Categories";
 import { items } from "./data/Items";
 import { getCurrentMonth, filterListByMonth } from "./helpers/dateFilter";
-import { TableArea } from "./components/TableArea/Index";
+import { TableArea } from "./components/TableArea/TableArea";
 
 import { useState, useEffect } from "react";
+import { InfoArea } from "./components/InfoArea/InfoArea";
 
 export function App() {
   const [list, setList] = useState(items);
@@ -24,6 +25,10 @@ export function App() {
         <C.HeaderText>Sistema Financeiro</C.HeaderText>
       </C.Header>
       <C.Body>
+        <InfoArea
+          onMonthChange={(newMonth: string) => setCurrentMonth(newMonth)}
+          currentMonth={currentMonth}
+        />
         <TableArea list={filteredList} />
       </C.Body>
     </C.Container>

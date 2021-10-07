@@ -3,7 +3,7 @@ import { Item } from "../types/Item";
 export const getCurrentMonth = () => {
   let now = new Date();
   return `
-    ${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}
+    ${now.getFullYear()}-${now.getMonth() + 1}
     `;
 };
 
@@ -29,4 +29,24 @@ export const formatDate = (date: Date): string => {
   let month = (date.getMonth() + 1).toString().padStart(2, "0");
   let day = date.getDate().toString().padStart(2, "0");
   return day + "/" + month + "/" + year;
+};
+
+export const formatCurrentMonth = (currentMonth: string): string => {
+  let [year, month] = currentMonth.split("-");
+  let months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ];
+
+  return `${months[parseInt(month) - 1]} de ${year}`;
 };
